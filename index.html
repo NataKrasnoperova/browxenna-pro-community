@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>BrowXenna Pro · Professional community</title>
+  <meta name="description" content="A professional community for artists, trainers and schools who want to learn, grow and create new opportunities with BrowXenna.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #fafaf8;
+      --paper-2: #efeceb;
+      --surface: #ffffff;
+      --ink: #2d2d2d;
+      --muted: #706f69;
+      --green: #7fbc18;
+      --green-dark: #5b8b0b;
+      --green-pale: #edf5df;
+      --champagne: #a68345;
+      --line: rgba(45,45,45,.13);
+      --shadow: 0 24px 80px rgba(45,45,45,.09);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    html[dir="rtl"] body { font-family: "Noto Sans Arabic", "DM Sans", sans-serif; }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    .serif { font-family: "Playfair Display", Georgia, serif; }
+    html[dir="rtl"] .serif { font-family: "Noto Sans Arabic", sans-serif; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--green-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    html[dir="rtl"] .eyebrow { letter-spacing: 0; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 { letter-spacing: -.035em; }
+    html[dir="rtl"] h1, html[dir="rtl"] h2 { letter-spacing: 0; }
+    h1 { margin-bottom: 24px; font-size: clamp(46px, 6.5vw, 88px); line-height: .98; font-weight: 600; }
+    h2 { margin-bottom: 18px; font-size: clamp(34px, 4.7vw, 62px); line-height: 1.04; font-weight: 600; }
+    h3 { margin-bottom: 10px; font-size: 20px; line-height: 1.25; }
+    .lead { max-width: 720px; color: var(--muted); font-size: clamp(18px, 2vw, 23px); line-height: 1.5; }
+    .section { padding: 110px 0; }
+    .section.alt { background: var(--paper-2); }
+    .section.dark { background: var(--ink); color: white; }
+    .section.dark .eyebrow { color: #b8dd72; }
+    .section.dark .lead, .section.dark .muted { color: #c8c7c1; }
+    .section-head { max-width: 850px; margin-bottom: 52px; }
+
+    /* header */
+    .header {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(250,250,248,.92);
+      backdrop-filter: blur(18px);
+    }
+    .header-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -.04em;
+      white-space: nowrap;
+    }
+    .logo sup { color: var(--green-dark); font-size: 10px; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .language {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      padding: 10px 34px 10px 14px;
+      cursor: pointer;
+    }
+    html[dir="rtl"] .language { padding: 10px 14px 10px 34px; }
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 12px 22px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button:focus-visible, .language:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+      outline: 3px solid rgba(127,188,24,.35);
+      outline-offset: 3px;
+    }
+    .button.primary { background: var(--green); color: #1f2a0c; box-shadow: 0 12px 28px rgba(127,188,24,.24); }
+    .button.secondary { border-color: var(--line); background: transparent; color: var(--ink); }
+    .button.light { border-color: rgba(255,255,255,.28); color: white; }
+    .button.full { width: 100%; }
+
+    /* hero */
+    .hero { position: relative; overflow: hidden; padding: 78px 0 92px; }
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 640px;
+      height: 640px;
+      inset: -220px -220px auto auto;
+      border: 1px solid rgba(127,188,24,.25);
+      border-radius: 50%;
+      box-shadow: 0 0 0 80px rgba(127,188,24,.035), 0 0 0 160px rgba(127,188,24,.025);
+    }
+    html[dir="rtl"] .hero::after { inset: -220px auto auto -220px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0,1.14fr) minmax(390px,.86fr); align-items: center; gap: 64px; }
+    .hero-copy { max-width: 820px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 34px 0 46px; }
+    .proof-row { display: flex; flex-wrap: wrap; gap: 28px; }
+    .proof { padding-inline-start: 13px; border-inline-start: 2px solid var(--green); }
+    .proof strong { display: block; font-size: 19px; }
+    .proof span { color: var(--muted); font-size: 13px; }
+    .hero-visual {
+      position: relative;
+      min-height: 650px;
+      overflow: hidden;
+      border-radius: 34px;
+      background: var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .hero-visual > img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+      object-position: 52% center;
+      filter: saturate(.9) contrast(.96);
+    }
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(25,25,25,.05) 28%, rgba(25,25,25,.88) 100%);
+    }
+    .hero-visual-copy {
+      position: absolute;
+      z-index: 2;
+      inset: auto 30px 28px;
+      color: white;
+    }
+    html[dir="rtl"] .hero-visual-copy { text-align: right; }
+    .hero-visual-copy small { color: #d3ee9f; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    html[dir="rtl"] .hero-visual-copy small { letter-spacing: 0; }
+    .hero-visual-copy h3 { max-width: 420px; margin: 12px 0 18px; font-size: clamp(25px,3vw,40px); line-height: 1.05; }
+    .hero-mini {
+      position: absolute;
+      z-index: 3;
+      top: 24px;
+      inset-inline-start: -34px;
+      width: 142px;
+      height: 174px;
+      overflow: hidden;
+      border: 6px solid var(--paper);
+      border-radius: 20px;
+      box-shadow: 0 18px 45px rgba(45,45,45,.22);
+    }
+    .hero-mini img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero-mini.product-mini { background: #f1f0ec; }
+    .hero-mini.product-mini img { object-fit: contain; padding: 8px; }
+    .path-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+    .path-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      background: rgba(20,20,20,.2);
+      padding: 7px 10px 7px 7px;
+      backdrop-filter: blur(10px);
+    }
+    html[dir="rtl"] .path-item { padding: 7px 7px 7px 10px; }
+    .path-dot {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: #1f2a0c;
+      font-size: 9px;
+      font-weight: 700;
+    }
+    .path-item b { font-size: 12px; }
+    .path-item span, .panel-note { display: none; }
+
+    /* audience */
+    .audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--line); }
+    .audience-card { min-height: 250px; padding: 32px 28px; border-inline-end: 1px solid var(--line); }
+    .audience-card:last-child { border-inline-end: 0; }
+    .audience-no { display: block; margin-bottom: 55px; color: var(--green-dark); font-size: 13px; font-weight: 700; }
+    .audience-card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    /* community photography */
+    .community-layout {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      margin-top: 50px;
+    }
+    .photo-card {
+      position: relative;
+      min-height: 330px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: #d8d5d1;
+    }
+    .photo-card.large { min-height: 680px; }
+    .photo-stack { display: grid; grid-template-rows: 1fr 1fr; gap: 18px; }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: saturate(.72) contrast(.96);
+      transition: transform .7s ease;
+    }
+    .photo-card:hover img { transform: scale(1.025); }
+    .photo-card.large img { object-position: 52% center; }
+    .photo-card.audience img { object-position: center 45%; }
+    .photo-caption {
+      position: absolute;
+      inset: auto 18px 18px;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      border-radius: 999px;
+      background: rgba(250,250,248,.92);
+      padding: 9px 13px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+    }
+    .community-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.25fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .community-strip .photo-card { min-height: 250px; }
+    .product-stage {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.96) 0 14%, transparent 15%),
+        linear-gradient(145deg, #e5e2dc, #cfcac2);
+    }
+    .product-stage::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 88px;
+      top: 20px;
+      left: -44px;
+      border-radius: 62% 38% 58% 42%;
+      background: rgba(255,255,255,.68);
+      filter: blur(2px);
+      transform: rotate(-13deg);
+    }
+    .product-stage::after {
+      content: "";
+      position: absolute;
+      width: 185px;
+      height: 24px;
+      right: -20px;
+      bottom: 48px;
+      border-radius: 50%;
+      background: linear-gradient(90deg,#6e503e,#4b4039,#7b6c58);
+      filter: blur(5px);
+      opacity: .42;
+      transform: rotate(-8deg);
+    }
+    .product-stage img {
+      position: absolute;
+      z-index: 2;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 22px rgba(45,45,45,.15));
+    }
+    .product-stage .product-main { width: 58%; height: 88%; left: 2%; bottom: -4%; }
+    .product-stage .product-side { width: 48%; height: 70%; right: -3%; bottom: -2%; }
+    html[dir="rtl"] .product-stage .product-main { left: auto; right: 2%; }
+    html[dir="rtl"] .product-stage .product-side { right: auto; left: -3%; }
+    .product-stage .photo-caption { z-index: 4; }
+    .product-texture img { transform: scale(1.38); object-position: 76% center; }
+    .product-texture:hover img { transform: scale(1.42); }
+    .community-quote {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: var(--radius);
+      background: var(--green-pale);
+      padding: 30px;
+    }
+    .community-quote p { margin: 0; font-size: 22px; line-height: 1.35; }
+    .community-quote span { color: var(--green-dark); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    html[dir="rtl"] .community-quote span { letter-spacing: 0; }
+
+    /* core tension */
+    .truth-grid {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 82px;
+      align-items: start;
+    }
+    .truth-copy {
+      position: sticky;
+      top: 112px;
+    }
+    .truth-copy .lead { max-width: 560px; }
+    .truth-list { border-top: 1px solid rgba(255,255,255,.22); }
+    .truth-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 18px;
+      padding: 27px 0;
+      border-bottom: 1px solid rgba(255,255,255,.22);
+    }
+    .truth-item > span { color: #b8dd72; font-size: 12px; font-weight: 700; }
+    .truth-item h3 { color: white; }
+    .truth-item p { margin: 0; color: #c8c7c1; }
+    .truth-statement {
+      margin-top: 30px;
+      border-radius: var(--radius);
+      background: var(--green);
+      color: #1f2a0c;
+      padding: 30px;
+      font-size: clamp(21px,2.5vw,31px);
+      line-height: 1.28;
+    }
+
+    /* benefits */
+    .benefit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .benefit {
+      min-height: 270px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 30px;
+    }
+    .benefit-mark {
+      width: 48px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+    .benefit p { margin: 0; color: var(--muted); }
+
+    /* pathway */
+    .journey { position: relative; max-width: 920px; margin-top: 54px; }
+    .journey::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      inset-inline-start: 25px;
+      width: 1px;
+      background: rgba(255,255,255,.25);
+    }
+    .journey-step { position: relative; display: grid; grid-template-columns: 52px 1fr; gap: 24px; padding-bottom: 42px; }
+    .journey-step:last-child { padding-bottom: 0; }
+    .journey-num {
+      z-index: 1;
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      background: var(--ink);
+      color: #b8dd72;
+      font-weight: 700;
+    }
+    .journey-step h3 { color: white; }
+    .journey-step p { max-width: 650px; margin: 0; color: #c8c7c1; }
+
+    /* earning */
+    .earning-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; align-items: start; }
+    .earning-list { display: grid; gap: 12px; }
+    .earning-item { border-top: 1px solid var(--line); padding: 22px 0 10px; }
+    .earning-item:first-child { border-top: 0; padding-top: 0; }
+    .earning-item span { display: block; margin-bottom: 7px; color: var(--green-dark); font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+    html[dir="rtl"] .earning-item span { letter-spacing: 0; }
+    .earning-item p { margin: 0; color: var(--muted); }
+    .guardrail {
+      margin-top: 28px;
+      border-inline-start: 3px solid var(--champagne);
+      background: #f5f1e9;
+      padding: 18px 20px;
+      color: #61563f;
+      font-size: 14px;
+    }
+
+    /* process */
+    .process-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .process-card { border-top: 3px solid var(--green); border-radius: 0 0 var(--radius) var(--radius); background: var(--surface); padding: 28px; }
+    .process-card b { display: block; margin-bottom: 36px; color: var(--green-dark); font-size: 12px; letter-spacing: .14em; }
+    html[dir="rtl"] .process-card b { letter-spacing: 0; }
+    .process-card p { margin: 0; color: var(--muted); }
+
+    /* FAQ */
+    .faq-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: 80px; align-items: start; }
+    .faq-list { border-top: 1px solid var(--line); }
+    details { border-bottom: 1px solid var(--line); }
+    summary {
+      position: relative;
+      list-style: none;
+      cursor: pointer;
+      padding: 24px 44px 24px 0;
+      font-weight: 700;
+    }
+    html[dir="rtl"] summary { padding: 24px 0 24px 44px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      position: absolute;
+      inset-inline-end: 4px;
+      top: 19px;
+      color: var(--green-dark);
+      font-size: 27px;
+      font-weight: 400;
+    }
+    details[open] summary::after { content: "−"; }
+    details p { max-width: 700px; padding: 0 42px 24px 0; margin: 0; color: var(--muted); }
+    html[dir="rtl"] details p { padding: 0 0 24px 42px; }
+
+    /* form */
+    .apply { overflow: hidden; border-radius: 34px; background: var(--ink); color: white; box-shadow: var(--shadow); }
+    .apply-grid { display: grid; grid-template-columns: .85fr 1.15fr; }
+    .apply-copy { position: relative; padding: 58px; }
+    .apply-copy::after {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      inset: auto auto -210px -160px;
+      border: 1px solid rgba(127,188,24,.35);
+      border-radius: 50%;
+      box-shadow: 0 0 0 54px rgba(127,188,24,.05), 0 0 0 108px rgba(127,188,24,.03);
+    }
+    html[dir="rtl"] .apply-copy::after { inset: auto -160px -210px auto; }
+    .apply-copy .eyebrow { color: #b8dd72; }
+    .apply-copy p { color: #c8c7c1; }
+    .form-wrap { background: var(--surface); color: var(--ink); padding: 52px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field.full { grid-column: 1 / -1; }
+    label { display: block; margin-bottom: 7px; font-size: 13px; font-weight: 700; }
+    input, select {
+      width: 100%;
+      height: 51px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 14px;
+    }
+    .consent { margin: 16px 0 20px; color: var(--muted); font-size: 12px; }
+    .form-success {
+      display: none;
+      min-height: 360px;
+      align-content: center;
+      text-align: center;
+    }
+    .form-success.active { display: grid; }
+    .form-success .check {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      font-size: 25px;
+    }
+
+    .footer { padding: 34px 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .earning-grid, .faq-layout, .apply-grid, .community-layout, .truth-grid { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 620px; }
+      .hero-mini { inset-inline-start: 24px; }
+      .truth-copy { position: static; }
+      .audience-grid { grid-template-columns: repeat(2,1fr); }
+      .audience-card:nth-child(2) { border-inline-end: 0; }
+      .audience-card:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .process-grid { grid-template-columns: 1fr; }
+      .faq-layout { gap: 30px; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .section { padding: 76px 0; }
+      .header-inner { min-height: 64px; }
+      .header-actions .button { display: none; }
+      .hero { padding: 58px 0 70px; }
+      .hero-grid { gap: 42px; }
+      h1 { font-size: clamp(43px, 13vw, 63px); }
+      h2 { font-size: 36px; }
+      .hero-actions .button { width: 100%; }
+      .proof-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .hero-visual { min-height: 550px; border-radius: 24px; }
+      .hero-mini { width: 112px; height: 138px; top: 18px; inset-inline-start: 18px; border-width: 4px; }
+      .hero-visual-copy { inset: auto 22px 22px; }
+      .audience-grid, .benefit-grid, .form-grid { grid-template-columns: 1fr; }
+      .audience-card { min-height: 210px; border-inline-end: 0; border-bottom: 1px solid var(--line); }
+      .audience-card:last-child { border-bottom: 0; }
+      .audience-no { margin-bottom: 34px; }
+      .benefit { min-height: 230px; }
+      .photo-card.large { min-height: 500px; }
+      .community-strip { grid-template-columns: 1fr; }
+      .community-strip .photo-card { min-height: 320px; }
+      .community-quote { min-height: 250px; }
+      .apply-copy, .form-wrap { padding: 34px 24px; }
+      .field.full { grid-column: auto; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="#top">BrowXenna <span>Pro</span><sup>®</sup></a>
+      <div class="header-actions">
+        <select id="language" class="language" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="ru">RU</option>
+          <option value="es">ES</option>
+          <option value="fr">FR</option>
+          <option value="ar">AR</option>
+        </select>
+        <a class="button primary" href="#apply" data-t="nav_apply">Apply to join</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-t="hero_label">BrowXenna professional community</p>
+          <h1 class="serif" data-t="hero_title">Your talent should open more than one door.</h1>
+          <p class="lead" data-t="hero_text">Learn with the brand, get support when you need it, grow your professional status and turn your expertise into new opportunities.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#apply" data-t="hero_cta">Apply to BrowXenna Pro</a>
+            <a class="button secondary" href="#inside" data-t="hero_secondary">See what is inside</a>
+          </div>
+          <div class="proof-row">
+            <div class="proof"><strong>110+</strong><span data-t="proof_countries">countries</span></div>
+            <div class="proof"><strong>200,000+</strong><span data-t="proof_artists">trained professionals</span></div>
+            <div class="proof"><strong data-t="proof_one">One</strong><span data-t="proof_standard">professional standard</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-visual" aria-label="Professional community">
+          <img src="browxenna_pro_campaign_assets/brow_artist_seated.jpg" alt="Female brow artist working with a seated client">
+          <div class="hero-mini product-mini"><img src="browxenna_pro_campaign_assets/monostep_packshot.webp" alt="BrowXenna MonoStep"></div>
+          <div class="hero-visual-copy">
+            <small data-t="path_label">One path. Your pace.</small>
+            <h3 class="serif" data-t="visual_hero">Learn together. Grow through what you know.</h3>
+            <div class="path-list">
+              <div class="path-item"><span class="path-dot">01</span><div><b data-t="path_1">Learn</b><span data-t="path_1_text">Master protocols and products.</span></div></div>
+              <div class="path-item"><span class="path-dot">02</span><div><b data-t="path_2">Practice</b><span data-t="path_2_text">Create confident, repeatable results.</span></div></div>
+              <div class="path-item"><span class="path-dot">03</span><div><b data-t="path_3">Share</b><span data-t="path_3_text">Build trust and professional visibility.</span></div></div>
+              <div class="path-item"><span class="path-dot">04</span><div><b data-t="path_4">Teach</b><span data-t="path_4_text">Grow through students and education.</span></div></div>
+              <div class="path-item"><span class="path-dot">05</span><div><b data-t="path_5">Represent</b><span data-t="path_5_text">Become a recognised voice of the brand.</span></div></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-t="audience_label">A place for professional growth</p>
+          <h2 class="serif" data-t="audience_title">Start from where you are.</h2>
+          <p class="lead" data-t="audience_text">BrowXenna Pro brings different professional paths into one community without making everyone the same.</p>
+        </div>
+        <div class="audience-grid">
+          <article class="audience-card"><span class="audience-no">01</span><h3 data-t="aud_1">Artist</h3><p data-t="aud_1_text">Strengthen your technique, solve difficult cases and build a more confident practice.</p></article>
+          <article class="audience-card"><span class="audience-no">02</span><h3 data-t="aud_2">Creator</h3><p data-t="aud_2_text">Turn trusted content and recommendations into professional opportunities.</p></article>
+          <article class="audience-card"><span class="audience-no">03</span><h3 data-t="aud_3">Trainer or speaker</h3><p data-t="aud_3_text">Teach with stronger materials, reach new audiences and grow with an international brand.</p></article>
+          <article class="audience-card"><span class="audience-no">04</span><h3 data-t="aud_4">School</h3><p data-t="aud_4_text">Bring a clear product system, protocols and brand support into your student journey.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-t="visual_label">A community you can see</p>
+          <h2 class="serif" data-t="visual_title">Professional growth happens around people.</h2>
+          <p class="lead" data-t="visual_text">In real rooms, at live demonstrations, through questions, practice and the courage to share what you know.</p>
+        </div>
+        <div class="community-layout">
+          <figure class="photo-card large">
+            <img src="browxenna_pro_campaign_assets/women_conference.jpg" alt="Female beauty educator speaking to a professional audience" loading="lazy">
+            <figcaption class="photo-caption" data-t="photo_1">Events that create connection</figcaption>
+          </figure>
+          <div class="photo-stack">
+            <figure class="photo-card audience">
+              <img src="browxenna_pro_campaign_assets/women_training.jpg" alt="Women learning brow technique together" loading="lazy">
+              <figcaption class="photo-caption" data-t="photo_2">A professional circle</figcaption>
+            </figure>
+            <figure class="photo-card">
+              <img src="browxenna_pro_campaign_assets/monostep_hero.jpg" alt="BrowXenna MonoStep professional campaign" loading="lazy">
+              <figcaption class="photo-caption" data-t="photo_3">Learning through dialogue</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="community-strip">
+          <figure class="photo-card product-stage">
+            <img class="product-main" src="browxenna_pro_campaign_assets/henna_packshot.webp" alt="BrowXenna professional henna set" loading="lazy">
+            <img class="product-side" src="browxenna_pro_campaign_assets/monostep_packshot.webp" alt="BrowXenna MonoStep" loading="lazy">
+            <figcaption class="photo-caption" data-t="photo_4">Practice with purpose</figcaption>
+          </figure>
+          <figure class="photo-card product-texture">
+            <img src="browxenna_pro_campaign_assets/j2_packshot.webp" alt="BrowXenna OXYGEN J2 professional dye" loading="lazy">
+            <figcaption class="photo-caption" data-t="photo_5">Support that feels close</figcaption>
+          </figure>
+          <div class="community-quote">
+            <span>BrowXenna Pro</span>
+            <p class="serif" data-t="visual_quote">“A strong professional should never have to grow alone.”</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container truth-grid">
+        <div class="truth-copy">
+          <p class="eyebrow" data-t="truth_label">Why another community?</p>
+          <h2 class="serif" data-t="truth_title">Technique is easy to discuss. Money rarely is.</h2>
+          <p class="lead" data-t="truth_text">There are already chats for formulas, products and feedback on work. What is missing is a trusted circle where professionals can honestly compare what helped them grow — and what did not.</p>
+        </div>
+        <div>
+          <div class="truth-list">
+            <article class="truth-item"><span>01</span><div><h3 data-t="truth_1">What actually brought clients</h3><p data-t="truth_1_text">Which advertising worked, which audience responded, what cost too much and what was worth repeating.</p></div></article>
+            <article class="truth-item"><span>02</span><div><h3 data-t="truth_2">How education becomes a business</h3><p data-t="truth_2_text">How trainers recruit students, sell a course, build repeat demand and avoid expensive launch mistakes.</p></div></article>
+            <article class="truth-item"><span>03</span><div><h3 data-t="truth_3">Where trainers find equals</h3><p data-t="truth_3_text">Once you teach others, your circle becomes smaller. You need people with whom you can speak honestly without performing the role of the expert.</p></div></article>
+            <article class="truth-item"><span>04</span><div><h3 data-t="truth_4">Why a permanent circle matters</h3><p data-t="truth_4_text">A conference gives ideas. A course gives knowledge. A community helps you test decisions, learn from others and move faster between events.</p></div></article>
+          </div>
+          <div class="truth-statement serif" data-t="truth_statement">Not another public group with recipes. A trusted circle for professional and financial growth.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="inside">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-t="inside_label">What is inside</p>
+          <h2 class="serif" data-t="inside_title">More than a group chat. A professional environment.</h2>
+          <p class="lead" data-t="inside_text">Everything is connected: education helps you work better, support keeps you moving, and your contribution opens the next opportunity.</p>
+        </div>
+        <div class="benefit-grid">
+          <article class="benefit"><span class="benefit-mark"></span><div><h3 data-t="ben_1">Education you can use</h3><p data-t="ben_1_text">Protocols, product lessons, live sessions and practical analysis of common mistakes.</p></div></article>
+          <article class="benefit"><span class="benefit-mark"></span><div><h3 data-t="ben_2">Answers when work gets difficult</h3><p data-t="ben_2_text">A professional space to ask questions, share a case and learn from the brand and peers.</p></div></article>
+          <article class="benefit"><span class="benefit-mark"></span><div><h3 data-t="ben_3">Visibility that is earned</h3><p data-t="ben_3_text">Opportunities to appear in brand content, education, events and the verified professional directory.</p></div></article>
+          <article class="benefit"><span class="benefit-mark"></span><div><h3 data-t="ben_4">A path to earn and teach</h3><p data-t="ben_4_text">Professional tools for your own audience and students, with clear rules after approval.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-t="growth_label">Professional path</p>
+          <h2 class="serif" data-t="growth_title">Status is not a badge. It is what you are ready to do next.</h2>
+          <p class="lead" data-t="growth_text">You can enter as a learner or an established educator. The community gives every participant a clear next step.</p>
+        </div>
+        <div class="journey">
+          <article class="journey-step"><span class="journey-num">01</span><div><h3 data-t="grow_1">Learn the system</h3><p data-t="grow_1_text">Understand BrowXenna products, protocols and the standard behind a predictable professional result.</p></div></article>
+          <article class="journey-step"><span class="journey-num">02</span><div><h3 data-t="grow_2">Prove it in practice</h3><p data-t="grow_2_text">Use the knowledge in real work, develop your portfolio and become visible through quality.</p></div></article>
+          <article class="journey-step"><span class="journey-num">03</span><div><h3 data-t="grow_3">Create influence</h3><p data-t="grow_3_text">Share useful professional content and help more artists discover the right way to work.</p></div></article>
+          <article class="journey-step"><span class="journey-num">04</span><div><h3 data-t="grow_4">Teach and represent</h3><p data-t="grow_4_text">The strongest professionals can join courses, events, speaking, judging and local brand projects.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container earning-grid">
+        <div>
+          <p class="eyebrow" data-t="earn_label">Professional opportunities</p>
+          <h2 class="serif" data-t="earn_title">Your expertise can create income, not only applause.</h2>
+          <p class="lead" data-t="earn_text">BrowXenna Pro connects education, recommendations and professional projects with measurable results.</p>
+          <div class="guardrail" data-t="earn_note">We do not promise automatic income. Tools and conditions depend on your role, market, contribution and approval.</div>
+        </div>
+        <div class="earning-list">
+          <article class="earning-item"><span>01</span><h3 data-t="earn_1">Your own students</h3><p data-t="earn_1_text">Teach your groups and connect their product journey to your professional profile.</p></article>
+          <article class="earning-item"><span>02</span><h3 data-t="earn_2">Trusted recommendations</h3><p data-t="earn_2_text">Approved participants receive tools that connect their audience with BrowXenna purchases.</p></article>
+          <article class="earning-item"><span>03</span><h3 data-t="earn_3">Courses and events</h3><p data-t="earn_3_text">Strong trainers and speakers can take part in paid education and brand projects.</p></article>
+          <article class="earning-item"><span>04</span><h3 data-t="earn_4">Professional visibility</h3><p data-t="earn_4_text">A verified profile helps clients, students, schools and partners find the right professional.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-t="join_label">How to join</p>
+          <h2 class="serif" data-t="join_title">One application. A clear starting point.</h2>
+          <p class="lead" data-t="join_text">We review every application because the community is built around real professional contribution, not an automatic badge.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-card"><b>01</b><h3 data-t="join_1">Tell us about yourself</h3><p data-t="join_1_text">Leave a short application with your country, role and professional profile.</p></article>
+          <article class="process-card"><b>02</b><h3 data-t="join_2">We review your experience</h3><p data-t="join_2_text">The BrowXenna team confirms the right starting role and may ask for additional work examples.</p></article>
+          <article class="process-card"><b>03</b><h3 data-t="join_3">Enter your professional space</h3><p data-t="join_3_text">After approval, you receive onboarding, access to the community and tools available for your role.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container faq-layout">
+        <div>
+          <p class="eyebrow" data-t="faq_label">Questions</p>
+          <h2 class="serif" data-t="faq_title">Before you apply.</h2>
+          <p class="lead" data-t="faq_text">The essentials about participation, selection and professional opportunities.</p>
+        </div>
+        <div class="faq-list">
+          <details><summary data-t="q_1">Who can apply?</summary><p data-t="a_1">Brow artists, lash and brow professionals, creators, trainers, speakers and schools from any country can apply. Beginners can also apply if they are entering the profession through education.</p></details>
+          <details><summary data-t="q_2">Do I already need to work with BrowXenna?</summary><p data-t="a_2">Not necessarily. Your starting point depends on your experience. Some roles require product knowledge and confirmed skills before professional tools become available.</p></details>
+          <details><summary data-t="q_3">Is the community free?</summary><p data-t="a_3">Application does not require payment. Courses, events or role-specific professional programmes may have their own conditions, which are shown before you join them.</p></details>
+          <details><summary data-t="q_4">Does joining make me an official trainer?</summary><p data-t="a_4">No. Trainer status is a separate professional role confirmed after education, proof of teaching ability and brand approval.</p></details>
+          <details><summary data-t="q_5">How can I earn through BrowXenna Pro?</summary><p data-t="a_5">Depending on your approved role, opportunities may include your own student groups, recommendation tools, courses, speaking and brand projects. Exact conditions are shared in your professional account.</p></details>
+          <details><summary data-t="q_6">What happens if my country has a distributor?</summary><p data-t="a_6">The community works together with the local BrowXenna partner. Education and professional activity create demand, while product purchases are directed through the authorised local route.</p></details>
+          <details><summary data-t="q_7">What happens after I apply?</summary><p data-t="a_7">We review your profile, confirm the right starting point and contact you. After approval, you complete a short onboarding and receive access to the relevant community and tools.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="apply">
+      <div class="container">
+        <div class="apply">
+          <div class="apply-grid">
+            <div class="apply-copy">
+              <p class="eyebrow" data-t="form_label">Application</p>
+              <h2 class="serif" data-t="form_title">Take your next professional step with BrowXenna.</h2>
+              <p data-t="form_text">Tell us where you are now. We will review your profile and contact you with the right next step.</p>
+            </div>
+            <div class="form-wrap">
+              <form id="applicationForm">
+                <div class="form-grid">
+                  <div class="field"><label for="name" data-t="field_name">Full name</label><input id="name" name="name" autocomplete="name" required></div>
+                  <div class="field"><label for="email" data-t="field_email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+                  <div class="field"><label for="country" data-t="field_country">Country and city</label><input id="country" name="country" autocomplete="country-name" required></div>
+                  <div class="field"><label for="role" data-t="field_role">Your professional role</label><select id="role" name="role" required><option value="" data-t="role_choose">Choose</option><option data-t="role_artist">Artist</option><option data-t="role_creator">Creator</option><option data-t="role_trainer">Trainer / speaker</option><option data-t="role_school">School</option><option data-t="role_beginner">Beginner</option></select></div>
+                  <div class="field full"><label for="profile" data-t="field_profile">Instagram or portfolio link</label><input id="profile" name="profile" type="url" placeholder="https://" required></div>
+                </div>
+                <p class="consent" data-t="form_consent">By applying, you agree that BrowXenna may review your professional profile and contact you about BrowXenna Pro.</p>
+                <button class="button primary full" type="submit" data-t="form_button">Send application</button>
+              </form>
+              <div id="formSuccess" class="form-success" role="status">
+                <span class="check">✓</span>
+                <h3 data-t="success_title">Application received</h3>
+                <p data-t="success_text">This is a prototype. In the live version, the BrowXenna team will review the profile and reply by email.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© BrowXenna, 2026</span>
+      <span data-t="footer_note">Independent campaign prototype · application connects to the official BrowXenna Pro programme</span>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        nav_apply:"Apply to join", hero_label:"BrowXenna professional community", hero_title:"Your talent should open more than one door.", hero_text:"Learn with the brand, get support when you need it, grow your professional status and turn your expertise into new opportunities.", hero_cta:"Apply to BrowXenna Pro", hero_secondary:"See what is inside", proof_countries:"countries", proof_artists:"trained professionals", proof_one:"One", proof_standard:"professional standard",
+        path_label:"One path. Your pace.", visual_hero:"Learn together. Grow through what you know.", path_1:"Learn", path_1_text:"Master protocols and products.", path_2:"Practice", path_2_text:"Create confident, repeatable results.", path_3:"Share", path_3_text:"Build trust and professional visibility.", path_4:"Teach", path_4_text:"Grow through students and education.", path_5:"Represent", path_5_text:"Become a recognised voice of the brand.", path_note:"You do not need to know your future role today. We review your experience and help define the right starting point.",
+        audience_label:"A place for professional growth", audience_title:"Start from where you are.", audience_text:"BrowXenna Pro brings different professional paths into one community without making everyone the same.", aud_1:"Artist", aud_1_text:"Strengthen your technique, solve difficult cases and build a more confident practice.", aud_2:"Creator", aud_2_text:"Turn trusted content and recommendations into professional opportunities.", aud_3:"Trainer or speaker", aud_3_text:"Teach with stronger materials, reach new audiences and grow with an international brand.", aud_4:"School", aud_4_text:"Bring a clear product system, protocols and brand support into your student journey.",
+        visual_label:"A community you can see", visual_title:"Professional growth happens around people.", visual_text:"In real rooms, at live demonstrations, through questions, practice and the courage to share what you know.", photo_1:"Events that create connection", photo_2:"A professional circle", photo_3:"The product behind the technique", photo_4:"Products made for professional work", photo_5:"Formulas behind the result", visual_quote:"“A strong professional should never have to grow alone.”",
+        truth_label:"Why another community?", truth_title:"Technique is easy to discuss. Money rarely is.", truth_text:"There are already chats for formulas, products and feedback on work. What is missing is a trusted circle where professionals can honestly compare what helped them grow — and what did not.", truth_1:"What actually brought clients", truth_1_text:"Which advertising worked, which audience responded, what cost too much and what was worth repeating.", truth_2:"How education becomes a business", truth_2_text:"How trainers recruit students, sell a course, build repeat demand and avoid expensive launch mistakes.", truth_3:"Where trainers find equals", truth_3_text:"Once you teach others, your circle becomes smaller. You need people with whom you can speak honestly without performing the role of the expert.", truth_4:"Why a permanent circle matters", truth_4_text:"A conference gives ideas. A course gives knowledge. A community helps you test decisions, learn from others and move faster between events.", truth_statement:"Not another public group with recipes. A trusted circle for professional and financial growth.",
+        inside_label:"What is inside", inside_title:"More than a group chat. A professional environment.", inside_text:"Everything is connected: education helps you work better, support keeps you moving, and your contribution opens the next opportunity.", ben_1:"Education you can use", ben_1_text:"Protocols, product lessons, live sessions and practical analysis of common mistakes.", ben_2:"Answers when work gets difficult", ben_2_text:"A professional space to ask questions, share a case and learn from the brand and peers.", ben_3:"Visibility that is earned", ben_3_text:"Opportunities to appear in brand content, education, events and the verified professional directory.", ben_4:"A path to earn and teach", ben_4_text:"Professional tools for your own audience and students, with clear rules after approval.",
+        growth_label:"Professional path", growth_title:"Status is not a badge. It is what you are ready to do next.", growth_text:"You can enter as a learner or an established educator. The community gives every participant a clear next step.", grow_1:"Learn the system", grow_1_text:"Understand BrowXenna products, protocols and the standard behind a predictable professional result.", grow_2:"Prove it in practice", grow_2_text:"Use the knowledge in real work, develop your portfolio and become visible through quality.", grow_3:"Create influence", grow_3_text:"Share useful professional content and help more artists discover the right way to work.", grow_4:"Teach and represent", grow_4_text:"The strongest professionals can join courses, events, speaking, judging and local brand projects.",
+        earn_label:"Professional opportunities", earn_title:"Your expertise can create income, not only applause.", earn_text:"BrowXenna Pro connects education, recommendations and professional projects with measurable results.", earn_note:"We do not promise automatic income. Tools and conditions depend on your role, market, contribution and approval.", earn_1:"Your own students", earn_1_text:"Teach your groups and connect their product journey to your professional profile.", earn_2:"Trusted recommendations", earn_2_text:"Approved participants receive tools that connect their audience with BrowXenna purchases.", earn_3:"Courses and events", earn_3_text:"Strong trainers and speakers can take part in paid education and brand projects.", earn_4:"Professional visibility", earn_4_text:"A verified profile helps clients, students, schools and partners find the right professional.",
+        join_label:"How to join", join_title:"One application. A clear starting point.", join_text:"We review every application because the community is built around real professional contribution, not an automatic badge.", join_1:"Tell us about yourself", join_1_text:"Leave a short application with your country, role and professional profile.", join_2:"We review your experience", join_2_text:"The BrowXenna team confirms the right starting role and may ask for additional work examples.", join_3:"Enter your professional space", join_3_text:"After approval, you receive onboarding, access to the community and tools available for your role.",
+        faq_label:"Questions", faq_title:"Before you apply.", faq_text:"The essentials about participation, selection and professional opportunities.", q_1:"Who can apply?", a_1:"Brow artists, lash and brow professionals, creators, trainers, speakers and schools from any country can apply. Beginners can also apply if they are entering the profession through education.", q_2:"Do I already need to work with BrowXenna?", a_2:"Not necessarily. Your starting point depends on your experience. Some roles require product knowledge and confirmed skills before professional tools become available.", q_3:"Is the community free?", a_3:"Application does not require payment. Courses, events or role-specific professional programmes may have their own conditions, which are shown before you join them.", q_4:"Does joining make me an official trainer?", a_4:"No. Trainer status is a separate professional role confirmed after education, proof of teaching ability and brand approval.", q_5:"How can I earn through BrowXenna Pro?", a_5:"Depending on your approved role, opportunities may include your own student groups, recommendation tools, courses, speaking and brand projects. Exact conditions are shared in your professional account.", q_6:"What happens if my country has a distributor?", a_6:"The community works together with the local BrowXenna partner. Education and professional activity create demand, while product purchases are directed through the authorised local route.", q_7:"What happens after I apply?", a_7:"We review your profile, confirm the right starting point and contact you. After approval, you complete a short onboarding and receive access to the relevant community and tools.",
+        form_label:"Application", form_title:"Take your next professional step with BrowXenna.", form_text:"Tell us where you are now. We will review your profile and contact you with the right next step.", field_name:"Full name", field_email:"Email", field_country:"Country and city", field_role:"Your professional role", role_choose:"Choose", role_artist:"Artist", role_creator:"Creator", role_trainer:"Trainer / speaker", role_school:"School", role_beginner:"Beginner", field_profile:"Instagram or portfolio link", form_consent:"By applying, you agree that BrowXenna may review your professional profile and contact you about BrowXenna Pro.", form_button:"Send application", success_title:"Application received", success_text:"This is a prototype. In the live version, the BrowXenna team will review the profile and reply by email.", footer_note:"Independent campaign prototype · application connects to the official BrowXenna Pro programme"
+      },
+      ru: {
+        nav_apply:"Хочу в сообщество", hero_label:"Для мастеров, тренеров и школ", hero_title:"Расти как мастер и эксперт — не в одиночку.", hero_text:"BrowXenna Pro — круг профессионалов, где говорят не только о техниках и формулах, но и о том, как заполнить запись, набрать группу, выстроить своё имя и зарабатывать на экспертизе.", hero_cta:"Хочу в BrowXenna Pro", hero_secondary:"Что я получу", proof_countries:"стран знают BrowXenna", proof_artists:"мастеров прошли обучение", proof_one:"Единый", proof_standard:"профессиональный подход",
+        path_label:"От мастерства — к влиянию", visual_hero:"Сильные мастера становятся сильнее рядом с сильными.", path_1:"Освоить", path_1_text:"Разобраться в продуктах и технике.", path_2:"Отработать", path_2_text:"Добиться уверенного результата.", path_3:"Показать", path_3_text:"Стать заметнее благодаря качеству.", path_4:"Научить", path_4_text:"Передавать опыт своим ученикам.", path_5:"Представлять", path_5_text:"Стать профессиональным лицом бренда.", path_note:"Необязательно уже сегодня знать свою будущую роль. Мы посмотрим ваш опыт и поможем определить правильную точку входа.",
+        audience_label:"У каждого свой следующий шаг", audience_title:"Неважно, где вы сейчас. Важно, куда хотите прийти.", audience_text:"Кто-то хочет стабильную запись и уверенность в сложных работах. Кто-то готов обучать и набирать группы. Кому-то пора поднять средний чек и перестать продвигаться наугад. В BrowXenna Pro для каждого есть свой путь.", aud_1:"Я мастер", aud_1_text:"Хочу уверенно работать со сложными исходниками, получать красивый результат и сделать запись стабильнее.", aud_2:"Я веду профессиональный блог", aud_2_text:"Хочу, чтобы контент приводил не только лайки, но и клиентов, партнёрства и новые возможности.", aud_3:"Я тренер или спикер", aud_3_text:"Хочу набирать группы, усиливать свои программы и делать проекты вместе с международным брендом.", aud_4:"У меня школа", aud_4_text:"Хочу дать ученикам сильную систему, помочь им начать работать и сохранить связь после выпуска.",
+        visual_label:"Люди, рядом с которыми растёшь", visual_title:"В профессии быстрее растут не те, кто знает всё. А те, кому есть с кем сравнить опыт.", visual_text:"Посмотреть сложную работу коллеги, разобрать формулу, отработать технику на модели и честно обсудить, что получилось, а что нет.", photo_1:"Встречаться и вдохновляться", photo_2:"Быть среди своих", photo_3:"Продукт, на котором строится техника", photo_4:"Продукты для профессиональной работы", photo_5:"Формулы, на которых строится результат", visual_quote:"«Когда рядом есть свои, расти легче и смелее».",
+        truth_label:"Зачем ещё одно сообщество", truth_title:"Формулами делятся охотно. Тем, что приносит записи и деньги, — гораздо реже.", truth_text:"В профессиональном чате можно спросить пропорции, время выдержки, обсудить продукт или разобрать сложный исходник. Но почти негде честно поговорить о том, какая реклама окупилась, откуда пришли клиенты и как мастер или тренер на самом деле растит доход.", truth_1:"Как сделать запись стабильной", truth_1_text:"Откуда пришли клиенты, какой оффер сработал, какая реклама дала заявки, сколько она стоила и почему часть клиентов не вернулась.", truth_2:"Как набирать группы и продавать обучение", truth_2_text:"Как упаковать программу, довести интерес до оплаты, заполнить группу без бесконечных скидок и сделать повторный набор.", truth_3:"С кем тренеру говорить на равных", truth_3_text:"Когда вы уже сами учите других, круг резко сужается. Нужны люди, с которыми можно обсуждать цену курса, продвижение, команду и ошибки — без необходимости всё время быть тем, кто знает ответы.", truth_4:"Почему одного обучения недостаточно", truth_4_text:"Конференция вдохновляет. Курс даёт новую технику. Но потом вы снова одна принимаете решения. Сообщество позволяет регулярно сравнивать опыт и быстрее понимать, что стоит делать дальше.", truth_statement:"Не ещё один паблик с формулами. Свой круг для роста записи, учеников, профессионального имени и дохода.",
+        inside_label:"Что изменится для вас", inside_title:"Вы перестанете искать всё по отдельности.", inside_text:"В одном круге соединяются техника, развитие личного бренда, продвижение, обучение и люди, которые уже проходили похожий путь.", ben_1:"Рабочая система вместо случайных советов", ben_1_text:"Формулы, протоколы, уроки по продуктам, живые эфиры и разбор ошибок — не разрозненными постами, а в понятной системе.", ben_2:"Разбор сложной работы без страха показаться слабее", ben_2_text:"Можно показать исходник и результат, задать вопрос по технике и получить содержательную обратную связь от бренда и коллег.", ben_3:"Продвижение, которое ведёт к записи", ben_3_text:"Разбирать офферы, рекламу, контент, повторные визиты и решения, которые помогают специалисту расти не только в подписчиках.", ben_4:"Путь от мастера к тренеру и эксперту", ben_4_text:"Если вы готовы передавать знания, сообщество помогает выйти к ученикам, выступлениям, курсам и совместным проектам.",
+        growth_label:"Как меняется ваша роль", growth_title:"От хорошего мастера — к профессионалу, которого знают и рекомендуют.", growth_text:"Здесь нет статуса ради красивого названия. Каждая следующая ступень появляется тогда, когда вы действительно к ней готовы.", grow_1:"Понять, почему получается именно так", grow_1_text:"Освоить продукты, технику и логику BrowXenna, чтобы не действовать вслепую и уверенно объяснять свой результат.", grow_2:"Подтвердить это реальной работой", grow_2_text:"Применять знания на клиентах, собирать сильное портфолио и расти благодаря качеству, а не громким словам.", grow_3:"Стать тем, чьему опыту доверяют", grow_3_text:"Делиться полезным, помогать другим мастерам и постепенно создавать своё профессиональное имя.", grow_4:"Передавать знания и представлять бренд", grow_4_text:"Лучшие участники смогут создавать курсы, выступать, судить чемпионаты и участвовать в проектах BrowXenna в своей стране.",
+        earn_label:"Как опыт превращается в деньги", earn_title:"Не просто работать больше. Зарабатывать больше на том, что вы уже умеете.", earn_text:"Сильная техника — основа. Следующий уровень начинается, когда ваши знания помогают заполнять запись, набирать группы и создавать продукты, за которыми возвращаются.", earn_note:"Это не обещание лёгких денег. Возможности и условия зависят от вашей роли, страны, реального вклада и подтверждения команды BrowXenna.", earn_1:"Набирать свои группы", earn_1_text:"Передавать знания ученикам, вести их после курса и строить обучение, на которое приходят по рекомендации.", earn_2:"Получать результат от рекомендаций", earn_2_text:"После подтверждения роли вы получите инструменты, которые связывают ваши рекомендации с покупками аудитории.", earn_3:"Выходить в курсы и на сцену", earn_3_text:"Сильных тренеров и спикеров мы сможем приглашать в эфиры, мероприятия, совместные курсы и проекты партнёров.", earn_4:"Стать специалистом, которого выбирают", earn_4_text:"Подтверждённый профиль помогает клиентам, ученикам, школам и партнёрам увидеть ваш уровень и обратиться именно к вам.",
+        join_label:"Как попасть внутрь", join_title:"Сначала познакомимся. Потом определим ваш путь.", join_text:"Мы не выдаём одинаковый статус всем подряд. Нам важно понять, где вы сейчас и что BrowXenna Pro действительно может вам дать.", join_1:"Расскажите о себе", join_1_text:"Оставьте короткую заявку: где вы работаете, чем занимаетесь и где можно посмотреть ваши работы.", join_2:"Мы внимательно посмотрим профиль", join_2_text:"Команда BrowXenna определит подходящую точку входа. Если понадобится, попросим дополнительные примеры.", join_3:"Получите доступ к своему уровню возможностей", join_3_text:"После одобрения вы познакомитесь с программой, войдёте в сообщество и получите инструменты, подходящие именно вашей роли.",
+        faq_label:"О чём обычно спрашивают", faq_title:"Возможно, вы уже думаете об этом.", faq_text:"Коротко и честно — об участии, отборе и возможностях внутри сообщества.", q_1:"Я пока не тренер. Мне сюда можно?", a_1:"Да. BrowXenna Pro создан не только для тренеров. Подать заявку могут практикующие мастера, авторы профессионального контента, спикеры, школы и те, кто только входит в профессию через обучение.", q_2:"Нужно ли уже работать на BrowXenna?", a_2:"Необязательно. Мы смотрим на вашу текущую точку. Но для отдельных ролей потребуется изучить продукты и подтвердить навыки, прежде чем откроются профессиональные инструменты.", q_3:"Нужно ли платить за участие?", a_3:"Подать заявку можно бесплатно. У отдельных курсов, мероприятий и профессиональных программ могут быть свои условия — о них вы узнаете заранее.", q_4:"После вступления я сразу стану тренером бренда?", a_4:"Нет. Тренер BrowXenna — это подтверждённая профессиональная роль. Для неё нужны знания продукта, умение преподавать, реальные работы и одобрение бренда.", q_5:"На чём здесь можно зарабатывать?", a_5:"В зависимости от подтверждённой роли — на собственных группах учеников, рекомендациях, курсах, выступлениях и совместных проектах. Точные условия будут доступны в вашем профессиональном кабинете.", q_6:"А если в моей стране уже есть дистрибьютор?", a_6:"Мы работаем вместе с локальным партнёром BrowXenna, а не в обход него. Сообщество помогает развивать мастеров и спрос, а покупки проходят через официальный канал вашей страны.", q_7:"Что будет после заявки?", a_7:"Мы посмотрим ваши работы и опыт, определим подходящую точку входа и свяжемся с вами. После одобрения вы пройдёте короткое знакомство с программой и получите доступ к своему сообществу и инструментам.",
+        form_label:"Начнём знакомство", form_title:"Если чувствуете, что готовы расти дальше — расскажите о себе.", form_text:"Не нужно подгонять себя под идеальный образ. Покажите, чем вы занимаетесь сейчас, — мы посмотрим и предложим подходящий следующий шаг.", field_name:"Имя и фамилия", field_email:"Электронная почта", field_country:"Страна и город", field_role:"Чем вы занимаетесь", role_choose:"Выберите", role_artist:"Мастер", role_creator:"Делюсь опытом и веду аудиторию", role_trainer:"Тренер / спикер", role_school:"Школа", role_beginner:"Только начинаю", field_profile:"Instagram или ссылка на работы", form_consent:"Отправляя заявку, вы разрешаете BrowXenna посмотреть ваш профессиональный профиль и связаться с вами по поводу BrowXenna Pro.", form_button:"Рассказать о себе", success_title:"Спасибо, заявка получена", success_text:"Это прототип. В рабочей версии команда BrowXenna посмотрит профиль и ответит вам по электронной почте.", footer_note:"Рекламный прототип · заявка ведёт в официальную программу BrowXenna Pro"
+      },
+      es: {
+        nav_apply:"Enviar solicitud", hero_label:"Comunidad profesional BrowXenna", hero_title:"Tu talento debería abrir más de una puerta.", hero_text:"Aprende con la marca, recibe apoyo cuando lo necesites, desarrolla tu estatus profesional y convierte tu experiencia en nuevas oportunidades.", hero_cta:"Solicitar acceso a BrowXenna Pro", hero_secondary:"Descubre qué hay dentro", proof_countries:"países", proof_artists:"profesionales formados", proof_one:"Un", proof_standard:"estándar profesional",
+        path_label:"Un camino. A tu ritmo.", visual_hero:"Aprendemos juntos. Crecemos con lo que sabemos.", path_1:"Aprender", path_1_text:"Domina protocolos y productos.", path_2:"Practicar", path_2_text:"Consigue resultados seguros y repetibles.", path_3:"Compartir", path_3_text:"Genera confianza y visibilidad profesional.", path_4:"Enseñar", path_4_text:"Crece a través de alumnos y formación.", path_5:"Representar", path_5_text:"Conviértete en una voz reconocida de la marca.", path_note:"No tienes que saber hoy cuál será tu papel futuro. Revisamos tu experiencia y te ayudamos a definir el punto de partida adecuado.",
+        audience_label:"Un espacio para crecer profesionalmente", audience_title:"Empieza desde donde estás.", audience_text:"BrowXenna Pro reúne distintos caminos profesionales en una comunidad sin hacer que todos sean iguales.", aud_1:"Artista", aud_1_text:"Refuerza tu técnica, resuelve casos difíciles y desarrolla una práctica más segura.", aud_2:"Creador", aud_2_text:"Convierte el contenido útil y la confianza de tu audiencia en oportunidades profesionales.", aud_3:"Formador o ponente", aud_3_text:"Enseña con mejores materiales, llega a nuevas audiencias y crece con una marca internacional.", aud_4:"Escuela", aud_4_text:"Integra un sistema de productos, protocolos y apoyo de marca en el recorrido de tus alumnos.",
+        visual_label:"Una comunidad que puedes ver", visual_title:"El crecimiento profesional ocurre entre personas.", visual_text:"En espacios reales, demostraciones en vivo, preguntas, práctica y el valor de compartir lo que sabes.", photo_1:"Eventos que crean conexión", photo_2:"Un círculo profesional", photo_3:"El producto detrás de la técnica", photo_4:"Productos para el trabajo profesional", photo_5:"Fórmulas detrás del resultado", visual_quote:"«Un gran profesional nunca debería crecer solo».",
+        truth_label:"¿Por qué otra comunidad?", truth_title:"Hablar de técnica es fácil. Hablar de dinero, no.", truth_text:"Ya existen chats sobre fórmulas, productos y trabajos. Lo que falta es un círculo de confianza para comparar con honestidad qué ayudó a crecer y qué no funcionó.", truth_1:"Qué publicidad trajo clientes de verdad", truth_1_text:"Qué promoción generó consultas, qué público respondió, qué costó demasiado y qué merece repetirse.", truth_2:"Cómo convertir la formación en un negocio", truth_2_text:"Cómo los formadores captan alumnos, venden cursos, generan demanda recurrente y evitan errores costosos de lanzamiento.", truth_3:"Dónde encuentra iguales un formador", truth_3_text:"Cuando ya enseñas a otros, tu círculo se reduce. Necesitas personas con quienes hablar con honestidad sin representar siempre el papel de experto.", truth_4:"Por qué importa un círculo permanente", truth_4_text:"Una conferencia aporta ideas. Un curso aporta conocimiento. Una comunidad ayuda a probar decisiones, aprender de otros y avanzar más rápido entre eventos.", truth_statement:"No otro grupo público de recetas. Un círculo de confianza para crecer profesionalmente y aumentar los ingresos.",
+        inside_label:"Qué encontrarás", inside_title:"Más que un chat. Un entorno profesional.", inside_text:"Todo está conectado: la formación mejora tu trabajo, el apoyo te ayuda a avanzar y tu aportación abre la siguiente oportunidad.", ben_1:"Formación que puedes aplicar", ben_1_text:"Protocolos, clases de producto, sesiones en directo y análisis práctico de errores frecuentes.", ben_2:"Respuestas cuando el trabajo se complica", ben_2_text:"Un espacio profesional para preguntar, compartir un caso y aprender de la marca y de otros profesionales.", ben_3:"Visibilidad que se gana", ben_3_text:"Oportunidades para aparecer en contenido, formación, eventos y el directorio profesional verificado.", ben_4:"Un camino para ganar y enseñar", ben_4_text:"Herramientas profesionales para tu audiencia y tus alumnos, con reglas claras después de la aprobación.",
+        growth_label:"Camino profesional", growth_title:"El estatus no es una insignia. Es lo que estás preparado para hacer después.", growth_text:"Puedes entrar como alumno o como educador con experiencia. La comunidad ofrece a cada participante un siguiente paso claro.", grow_1:"Aprender el sistema", grow_1_text:"Comprende los productos, protocolos y el estándar BrowXenna para lograr resultados profesionales predecibles.", grow_2:"Demostrarlo en la práctica", grow_2_text:"Aplica los conocimientos en trabajos reales, desarrolla tu portafolio y gana visibilidad gracias a la calidad.", grow_3:"Crear influencia", grow_3_text:"Comparte contenido profesional útil y ayuda a más artistas a descubrir la forma correcta de trabajar.", grow_4:"Enseñar y representar", grow_4_text:"Los profesionales más sólidos pueden participar en cursos, eventos, ponencias, jurados y proyectos locales de la marca.",
+        earn_label:"Oportunidades profesionales", earn_title:"Tu experiencia puede generar ingresos, no solo aplausos.", earn_text:"BrowXenna Pro conecta la formación, las recomendaciones y los proyectos profesionales con resultados medibles.", earn_note:"No prometemos ingresos automáticos. Las herramientas y condiciones dependen de tu función, mercado, aportación y aprobación.", earn_1:"Tus propios alumnos", earn_1_text:"Forma a tus grupos y conecta su recorrido de producto con tu perfil profesional.", earn_2:"Recomendaciones de confianza", earn_2_text:"Los participantes aprobados reciben herramientas que conectan a su audiencia con las compras BrowXenna.", earn_3:"Cursos y eventos", earn_3_text:"Los formadores y ponentes destacados pueden participar en formación remunerada y proyectos de marca.", earn_4:"Visibilidad profesional", earn_4_text:"Un perfil verificado ayuda a clientes, alumnos, escuelas y socios a encontrar al profesional adecuado.",
+        join_label:"Cómo unirte", join_title:"Una solicitud. Un punto de partida claro.", join_text:"Revisamos cada solicitud porque la comunidad se basa en una aportación profesional real, no en una insignia automática.", join_1:"Cuéntanos sobre ti", join_1_text:"Envía una breve solicitud con tu país, función y perfil profesional.", join_2:"Revisamos tu experiencia", join_2_text:"El equipo BrowXenna confirma la función inicial adecuada y puede pedir ejemplos adicionales de tu trabajo.", join_3:"Entra en tu espacio profesional", join_3_text:"Tras la aprobación, recibes la introducción, el acceso a la comunidad y las herramientas disponibles para tu función.",
+        faq_label:"Preguntas", faq_title:"Antes de solicitar.", faq_text:"Lo esencial sobre participación, selección y oportunidades profesionales.", q_1:"¿Quién puede solicitar?", a_1:"Artistas de cejas y pestañas, creadores, formadores, ponentes y escuelas de cualquier país. Los principiantes también pueden solicitar si están entrando en la profesión mediante formación.", q_2:"¿Ya debo trabajar con BrowXenna?", a_2:"No necesariamente. Tu punto de partida depende de tu experiencia. Algunas funciones requieren conocimiento del producto y habilidades confirmadas antes de acceder a herramientas profesionales.", q_3:"¿La comunidad es gratuita?", a_3:"La solicitud no requiere pago. Los cursos, eventos o programas específicos pueden tener sus propias condiciones, que se muestran antes de participar.", q_4:"¿Unirme me convierte en formador oficial?", a_4:"No. El estatus de formador es una función profesional independiente que se confirma tras la formación, la prueba de capacidad docente y la aprobación de la marca.", q_5:"¿Cómo puedo ganar a través de BrowXenna Pro?", a_5:"Según tu función aprobada, puede incluir tus propios grupos de alumnos, herramientas de recomendación, cursos, ponencias y proyectos de marca. Las condiciones exactas aparecen en tu cuenta profesional.", q_6:"¿Qué ocurre si mi país tiene distribuidor?", a_6:"La comunidad trabaja junto al socio local BrowXenna. La formación y la actividad profesional crean demanda, mientras que las compras siguen el canal local autorizado.", q_7:"¿Qué ocurre después de solicitar?", a_7:"Revisamos tu perfil, confirmamos el punto de partida y nos ponemos en contacto. Tras la aprobación, completas una breve introducción y recibes acceso a la comunidad y herramientas correspondientes.",
+        form_label:"Solicitud", form_title:"Da tu siguiente paso profesional con BrowXenna.", form_text:"Cuéntanos dónde estás ahora. Revisaremos tu perfil y te contactaremos con el siguiente paso adecuado.", field_name:"Nombre completo", field_email:"Correo electrónico", field_country:"País y ciudad", field_role:"Tu función profesional", role_choose:"Elegir", role_artist:"Artista", role_creator:"Creador", role_trainer:"Formador / ponente", role_school:"Escuela", role_beginner:"Principiante", field_profile:"Instagram o enlace al portafolio", form_consent:"Al enviar la solicitud, aceptas que BrowXenna revise tu perfil profesional y te contacte sobre BrowXenna Pro.", form_button:"Enviar solicitud", success_title:"Solicitud recibida", success_text:"Este es un prototipo. En la versión real, el equipo BrowXenna revisará el perfil y responderá por correo electrónico.", footer_note:"Prototipo publicitario independiente · la solicitud conecta con el programa oficial BrowXenna Pro"
+      },
+      fr: {
+        nav_apply:"Candidater", hero_label:"Communauté professionnelle BrowXenna", hero_title:"Votre talent devrait ouvrir plus d’une porte.", hero_text:"Apprenez avec la marque, recevez du soutien, développez votre statut professionnel et transformez votre expertise en nouvelles opportunités.", hero_cta:"Candidater à BrowXenna Pro", hero_secondary:"Découvrir le programme", proof_countries:"pays", proof_artists:"professionnels formés", proof_one:"Un", proof_standard:"standard professionnel",
+        path_label:"Un parcours. Votre rythme.", visual_hero:"Apprendre ensemble. Grandir grâce au savoir.", path_1:"Apprendre", path_1_text:"Maîtriser les produits et protocoles.", path_2:"Pratiquer", path_2_text:"Créer des résultats fiables et reproductibles.", path_3:"Partager", path_3_text:"Développer confiance et visibilité.", path_4:"Former", path_4_text:"Grandir grâce aux élèves et à la formation.", path_5:"Représenter", path_5_text:"Devenir une voix reconnue de la marque.", path_note:"Vous n’avez pas besoin de connaître dès aujourd’hui votre futur rôle. Nous étudions votre expérience et vous aidons à choisir le bon point de départ.",
+        audience_label:"Un espace de développement professionnel", audience_title:"Commencez là où vous êtes.", audience_text:"BrowXenna Pro réunit différents parcours professionnels dans une même communauté sans rendre tout le monde identique.", aud_1:"Artiste", aud_1_text:"Renforcez votre technique, résolvez les cas difficiles et développez une pratique plus assurée.", aud_2:"Créateur", aud_2_text:"Transformez un contenu utile et la confiance de votre audience en opportunités professionnelles.", aud_3:"Formateur ou conférencier", aud_3_text:"Enseignez avec de meilleurs supports, touchez de nouveaux publics et évoluez avec une marque internationale.", aud_4:"École", aud_4_text:"Intégrez un système de produits, des protocoles et le soutien de la marque au parcours de vos élèves.",
+        visual_label:"Une communauté qui se voit", visual_title:"La progression professionnelle se construit avec les autres.", visual_text:"Dans des lieux réels, lors de démonstrations, par les questions, la pratique et le courage de transmettre son savoir.", photo_1:"Des événements qui rapprochent", photo_2:"Un cercle professionnel", photo_3:"Le produit derrière la technique", photo_4:"Des produits conçus pour les professionnels", photo_5:"Les formules derrière le résultat", visual_quote:"« Un grand professionnel ne devrait jamais grandir seul. »",
+        truth_label:"Pourquoi une autre communauté ?", truth_title:"Parler technique est facile. Parler d’argent l’est beaucoup moins.", truth_text:"Il existe déjà des groupes pour les formules, les produits et les retours sur les travaux. Ce qui manque, c’est un cercle de confiance où comparer honnêtement ce qui a permis de progresser — et ce qui n’a pas fonctionné.", truth_1:"Ce qui a réellement attiré des clients", truth_1_text:"Quelle publicité a généré des demandes, quel public a répondu, ce qui a coûté trop cher et ce qui mérite d’être répété.", truth_2:"Comment la formation devient une activité rentable", truth_2_text:"Comment les formateurs recrutent des élèves, vendent un cours, créent une demande récurrente et évitent les erreurs de lancement coûteuses.", truth_3:"Où les formateurs trouvent leurs pairs", truth_3_text:"Quand on enseigne déjà aux autres, le cercle se rétrécit. Il faut des personnes avec qui parler franchement sans devoir toujours jouer le rôle de l’expert.", truth_4:"Pourquoi un cercle permanent compte", truth_4_text:"Une conférence apporte des idées. Un cours apporte des connaissances. Une communauté aide à tester les décisions, apprendre des autres et avancer plus vite entre les événements.", truth_statement:"Pas un autre groupe public de recettes. Un cercle de confiance pour progresser professionnellement et financièrement.",
+        inside_label:"Ce que vous trouverez", inside_title:"Plus qu’un groupe de discussion. Un environnement professionnel.", inside_text:"Tout est lié : la formation améliore votre travail, le soutien vous aide à avancer et votre contribution ouvre la prochaine opportunité.", ben_1:"Une formation applicable", ben_1_text:"Protocoles, cours produits, sessions en direct et analyse pratique des erreurs fréquentes.", ben_2:"Des réponses quand le travail se complique", ben_2_text:"Un espace professionnel pour poser vos questions, partager un cas et apprendre auprès de la marque et de vos pairs.", ben_3:"Une visibilité méritée", ben_3_text:"Des opportunités dans les contenus, formations, événements et l’annuaire vérifié de la marque.", ben_4:"Un parcours pour gagner et enseigner", ben_4_text:"Des outils professionnels pour votre audience et vos élèves, avec des règles claires après validation.",
+        growth_label:"Parcours professionnel", growth_title:"Le statut n’est pas un badge. Il reflète ce que vous êtes prêt à faire ensuite.", growth_text:"Vous pouvez arriver comme apprenant ou formateur confirmé. La communauté offre à chacun une prochaine étape claire.", grow_1:"Apprendre le système", grow_1_text:"Comprendre les produits, les protocoles et le standard BrowXenna pour un résultat professionnel prévisible.", grow_2:"Le prouver par la pratique", grow_2_text:"Appliquer les connaissances, développer votre portfolio et gagner en visibilité grâce à la qualité.", grow_3:"Créer de l’influence", grow_3_text:"Partager un contenu professionnel utile et aider davantage d’artistes à travailler correctement.", grow_4:"Former et représenter", grow_4_text:"Les meilleurs professionnels peuvent rejoindre des cours, événements, conférences, jurys et projets locaux de la marque.",
+        earn_label:"Opportunités professionnelles", earn_title:"Votre expertise peut créer des revenus, pas seulement des applaudissements.", earn_text:"BrowXenna Pro relie formation, recommandations et projets professionnels à des résultats mesurables.", earn_note:"Nous ne promettons pas de revenu automatique. Les outils et conditions dépendent de votre rôle, marché, contribution et validation.", earn_1:"Vos propres élèves", earn_1_text:"Formez vos groupes et reliez leur parcours produit à votre profil professionnel.", earn_2:"Des recommandations de confiance", earn_2_text:"Les membres validés reçoivent des outils reliant leur audience aux achats BrowXenna.", earn_3:"Cours et événements", earn_3_text:"Les formateurs et conférenciers reconnus peuvent participer à des formations rémunérées et à des projets de marque.", earn_4:"Visibilité professionnelle", earn_4_text:"Un profil vérifié aide clients, élèves, écoles et partenaires à trouver le bon professionnel.",
+        join_label:"Comment participer", join_title:"Une candidature. Un point de départ clair.", join_text:"Nous étudions chaque candidature car la communauté repose sur une vraie contribution professionnelle, pas sur un badge automatique.", join_1:"Présentez-vous", join_1_text:"Envoyez une courte candidature avec votre pays, votre rôle et votre profil professionnel.", join_2:"Nous étudions votre expérience", join_2_text:"L’équipe BrowXenna confirme le rôle de départ adapté et peut demander d’autres exemples de travail.", join_3:"Entrez dans votre espace professionnel", join_3_text:"Après validation, vous recevez l’introduction, l’accès à la communauté et les outils liés à votre rôle.",
+        faq_label:"Questions", faq_title:"Avant de candidater.", faq_text:"L’essentiel sur la participation, la sélection et les opportunités professionnelles.", q_1:"Qui peut candidater ?", a_1:"Artistes sourcils et cils, créateurs, formateurs, conférenciers et écoles de tous pays. Les débutants peuvent aussi candidater s’ils entrent dans la profession par la formation.", q_2:"Dois-je déjà travailler avec BrowXenna ?", a_2:"Pas nécessairement. Votre point de départ dépend de votre expérience. Certains rôles exigent une connaissance des produits et des compétences confirmées avant l’accès aux outils professionnels.", q_3:"La communauté est-elle gratuite ?", a_3:"La candidature est gratuite. Les cours, événements ou programmes liés à un rôle peuvent avoir leurs propres conditions, présentées avant l’inscription.", q_4:"L’adhésion fait-elle de moi un formateur officiel ?", a_4:"Non. Le statut de formateur est un rôle professionnel distinct, confirmé après formation, preuve de capacité pédagogique et validation de la marque.", q_5:"Comment gagner avec BrowXenna Pro ?", a_5:"Selon votre rôle validé, les opportunités peuvent inclure vos groupes d’élèves, des outils de recommandation, des cours, des conférences et des projets de marque. Les conditions exactes figurent dans votre espace professionnel.", q_6:"Que se passe-t-il si mon pays a un distributeur ?", a_6:"La communauté travaille avec le partenaire BrowXenna local. La formation et l’activité professionnelle créent la demande, tandis que les achats suivent le canal local autorisé.", q_7:"Que se passe-t-il après ma candidature ?", a_7:"Nous étudions votre profil, confirmons le bon point de départ et vous contactons. Après validation, vous suivez une courte introduction et recevez l’accès à la communauté et aux outils correspondants.",
+        form_label:"Candidature", form_title:"Passez à l’étape professionnelle suivante avec BrowXenna.", form_text:"Dites-nous où vous en êtes. Nous étudierons votre profil et vous contacterons avec la prochaine étape adaptée.", field_name:"Nom complet", field_email:"E-mail", field_country:"Pays et ville", field_role:"Votre rôle professionnel", role_choose:"Choisir", role_artist:"Artiste", role_creator:"Créateur", role_trainer:"Formateur / conférencier", role_school:"École", role_beginner:"Débutant", field_profile:"Instagram ou lien vers le portfolio", form_consent:"En candidatant, vous acceptez que BrowXenna étudie votre profil professionnel et vous contacte au sujet de BrowXenna Pro.", form_button:"Envoyer la candidature", success_title:"Candidature reçue", success_text:"Ceci est un prototype. Dans la version réelle, l’équipe BrowXenna étudiera le profil et répondra par e-mail.", footer_note:"Prototype publicitaire indépendant · la candidature rejoint le programme officiel BrowXenna Pro"
+      },
+      ar: {
+        nav_apply:"قدّمي طلب الانضمام", hero_label:"مجتمع BrowXenna المهني", hero_title:"موهبتك تستحق أن تفتح لك أكثر من باب.", hero_text:"تعلّمي مع العلامة، واحصلي على الدعم عند الحاجة، وطوّري مكانتك المهنية، وحوّلي خبرتك إلى فرص جديدة.", hero_cta:"قدّمي طلبك إلى BrowXenna Pro", hero_secondary:"اكتشفي ما في الداخل", proof_countries:"دولة", proof_artists:"متخصص تم تدريبهم", proof_one:"معيار", proof_standard:"مهني واحد",
+        path_label:"مسار واحد، وبالسرعة التي تناسبك.", visual_hero:"نتعلّم معاً، وننمو بما نعرفه.", path_1:"تعلّمي", path_1_text:"أتقني المنتجات والبروتوكولات.", path_2:"طبّقي", path_2_text:"حققي نتائج موثوقة وقابلة للتكرار.", path_3:"شاركي", path_3_text:"ابني الثقة والحضور المهني.", path_4:"درّبي", path_4_text:"تطوري من خلال الطالبات والتعليم.", path_5:"مثّلي العلامة", path_5_text:"كوني صوتاً مهنياً معترفاً به للعلامة.", path_note:"لا تحتاجين إلى معرفة دورك المستقبلي اليوم. نراجع خبرتك ونساعدك على تحديد نقطة البداية المناسبة.",
+        audience_label:"مساحة للنمو المهني", audience_title:"ابدئي من مكانك الحالي.", audience_text:"يجمع BrowXenna Pro المسارات المهنية المختلفة في مجتمع واحد من دون أن يجعل الجميع متشابهين.", aud_1:"فنانة حواجب", aud_1_text:"طوّري تقنيتك، وعالجي الحالات الصعبة، وابني ممارسة أكثر ثقة.", aud_2:"صانعة محتوى", aud_2_text:"حوّلي المحتوى المفيد وثقة جمهورك إلى فرص مهنية.", aud_3:"مدرّبة أو متحدثة", aud_3_text:"درّبي بمواد أقوى، وصلي إلى جمهور جديد، وتطوري مع علامة عالمية.", aud_4:"أكاديمية", aud_4_text:"أدخلي نظام منتجات واضحاً وبروتوكولات ودعم العلامة في رحلة طالباتك.",
+        visual_label:"مجتمع يمكنك رؤيته", visual_title:"النمو المهني يحدث بين الناس.", visual_text:"في قاعات حقيقية، وعروض مباشرة، ومن خلال الأسئلة والتطبيق والشجاعة في مشاركة المعرفة.", photo_1:"فعاليات تصنع التواصل", photo_2:"دائرة مهنية", photo_3:"المنتج وراء التقنية", photo_4:"منتجات للعمل المهني", photo_5:"تركيبات تصنع النتيجة", visual_quote:"«المتخصصة القوية لا ينبغي أن تنمو وحدها».",
+        truth_label:"لماذا مجتمع آخر؟", truth_title:"من السهل مناقشة التقنية، لكن الحديث عن المال أصعب بكثير.", truth_text:"توجد بالفعل مجموعات للوصفات والمنتجات وتقييم الأعمال. ما ينقص هو دائرة موثوقة يمكن فيها مقارنة ما ساعد فعلاً على النمو وما لم ينجح.", truth_1:"ما الذي جلب العملاء فعلاً", truth_1_text:"أي إعلان جلب طلبات، وأي جمهور استجاب، وما كان مكلفاً أكثر من اللازم، وما يستحق التكرار.", truth_2:"كيف يصبح التعليم عملاً مربحاً", truth_2_text:"كيف تجد المدرّبات الطالبات، وتبعن الدورات، وتبنين طلباً متكرراً، وتتجنبن أخطاء الإطلاق المكلفة.", truth_3:"أين تجد المدرّبة من هن في مستواها", truth_3_text:"عندما تعلّمين الآخرين، تضيق دائرتك. تحتاجين إلى أشخاص يمكنك الحديث معهم بصدق من دون أن تبقي دائماً في دور الخبيرة.", truth_4:"لماذا نحتاج إلى دائرة مستمرة", truth_4_text:"المؤتمر يمنح أفكاراً، والدورة تمنح معرفة، أما المجتمع فيساعدك على اختبار القرارات والتعلّم من الآخرين والتحرك بسرعة أكبر بين الفعاليات.", truth_statement:"ليس مجموعة عامة أخرى للوصفات، بل دائرة موثوقة للنمو المهني وزيادة الدخل.",
+        inside_label:"ماذا ستجدين", inside_title:"أكثر من مجرد مجموعة دردشة. بيئة مهنية متكاملة.", inside_text:"كل شيء مترابط: التعليم يساعدك على العمل بشكل أفضل، والدعم يبقيك متقدمة، ومساهمتك تفتح لك الفرصة التالية.", ben_1:"تعليم يمكنك تطبيقه", ben_1_text:"بروتوكولات ودروس منتجات وجلسات مباشرة وتحليل عملي للأخطاء الشائعة.", ben_2:"إجابات عندما يصبح العمل صعباً", ben_2_text:"مساحة مهنية لطرح الأسئلة ومشاركة الحالات والتعلّم من العلامة ومن الزميلات.", ben_3:"حضور مهني تستحقينه", ben_3_text:"فرص للظهور في محتوى العلامة والتعليم والفعاليات والدليل المهني الموثّق.", ben_4:"مسار للكسب والتدريب", ben_4_text:"أدوات مهنية لجمهورك وطالباتك، مع قواعد واضحة بعد الموافقة.",
+        growth_label:"المسار المهني", growth_title:"المكانة ليست شارة، بل ما أنت مستعدة للقيام به بعد ذلك.", growth_text:"يمكنك الانضمام كمتعلّمة أو كمدرّبة صاحبة خبرة. يمنح المجتمع كل مشاركة خطوة تالية واضحة.", grow_1:"تعلّمي النظام", grow_1_text:"تعرّفي على منتجات BrowXenna وبروتوكولاتها والمعيار الذي يدعم نتيجة مهنية متوقعة.", grow_2:"أثبتي مهارتك بالتطبيق", grow_2_text:"استخدمي المعرفة في عمل حقيقي، وطوّري ملف أعمالك، وكوني أكثر حضوراً من خلال الجودة.", grow_3:"اصنعي تأثيراً", grow_3_text:"شاركي محتوى مهنياً مفيداً وساعدي مزيداً من الفنانات على اكتشاف الطريقة الصحيحة للعمل.", grow_4:"درّبي ومثّلي العلامة", grow_4_text:"يمكن لأقوى المتخصصات المشاركة في الدورات والفعاليات والتحدث والتحكيم ومشاريع العلامة المحلية.",
+        earn_label:"الفرص المهنية", earn_title:"خبرتك يمكن أن تصنع دخلاً، لا مجرد إعجاب.", earn_text:"يربط BrowXenna Pro التعليم والتوصيات والمشاريع المهنية بنتائج قابلة للقياس.", earn_note:"نحن لا نَعِد بدخل تلقائي. الأدوات والشروط تعتمد على دورك وسوقك ومساهمتك وموافقة العلامة.", earn_1:"طالباتك الخاصات", earn_1_text:"درّبي مجموعاتك واربطِي رحلة منتجاتهن بملفك المهني.", earn_2:"توصيات موثوقة", earn_2_text:"تحصل المشاركات المعتمدات على أدوات تربط جمهورهن بمشتريات BrowXenna.", earn_3:"دورات وفعاليات", earn_3_text:"يمكن للمدرّبات والمتحدثات المتميزات المشاركة في تعليم مدفوع ومشاريع العلامة.", earn_4:"حضور مهني", earn_4_text:"يساعد الملف الموثّق العملاء والطالبات والأكاديميات والشركاء على العثور على المتخصصة المناسبة.",
+        join_label:"كيفية الانضمام", join_title:"طلب واحد، ونقطة بداية واضحة.", join_text:"نراجع كل طلب لأن المجتمع مبني على مساهمة مهنية حقيقية، وليس على شارة تُمنح تلقائياً.", join_1:"عرّفينا بنفسك", join_1_text:"أرسلي طلباً قصيراً يتضمن بلدك ودورك وملفك المهني.", join_2:"نراجع خبرتك", join_2_text:"يؤكد فريق BrowXenna دور البداية المناسب وقد يطلب أمثلة إضافية لأعمالك.", join_3:"ادخلي مساحتك المهنية", join_3_text:"بعد الموافقة تحصلين على التعريف بالبرنامج والوصول إلى المجتمع والأدوات المتاحة لدورك.",
+        faq_label:"الأسئلة", faq_title:"قبل تقديم الطلب.", faq_text:"أهم ما تحتاجين معرفته عن المشاركة والاختيار والفرص المهنية.", q_1:"من يمكنه التقديم؟", a_1:"يمكن لفنانات الحواجب والرموش وصانعات المحتوى والمدرّبات والمتحدثات والأكاديميات من أي دولة التقديم. ويمكن للمبتدئات أيضاً التقديم إذا كن يدخلن المهنة من خلال التعليم.", q_2:"هل يجب أن أعمل بالفعل بمنتجات BrowXenna؟", a_2:"ليس بالضرورة. تعتمد نقطة البداية على خبرتك. تتطلب بعض الأدوار معرفة المنتج وإثبات المهارات قبل إتاحة الأدوات المهنية.", q_3:"هل المجتمع مجاني؟", a_3:"تقديم الطلب مجاني. قد تكون للدورات أو الفعاليات أو البرامج الخاصة بكل دور شروط منفصلة تظهر لك قبل المشاركة.", q_4:"هل الانضمام يجعلني مدرّبة رسمية؟", a_4:"لا. صفة المدرّبة دور مهني مستقل يُعتمد بعد التعليم وإثبات القدرة على التدريب وموافقة العلامة.", q_5:"كيف يمكنني تحقيق دخل من خلال BrowXenna Pro؟", a_5:"بحسب دورك المعتمد، قد تشمل الفرص مجموعات طالباتك وأدوات التوصية والدورات والتحدث ومشاريع العلامة. تظهر الشروط الدقيقة في حسابك المهني.", q_6:"ماذا لو كان هناك موزع في بلدي؟", a_6:"يعمل المجتمع بالتعاون مع شريك BrowXenna المحلي. يصنع التعليم والنشاط المهني الطلب، بينما تتم المشتريات من خلال القناة المحلية المعتمدة.", q_7:"ماذا يحدث بعد تقديم الطلب؟", a_7:"نراجع ملفك ونؤكد نقطة البداية المناسبة ثم نتواصل معك. بعد الموافقة تكملين تعريفاً قصيراً وتحصلين على الوصول إلى المجتمع والأدوات المناسبة.",
+        form_label:"طلب الانضمام", form_title:"اتخذي خطوتك المهنية التالية مع BrowXenna.", form_text:"أخبرينا بمكانك الحالي. سنراجع ملفك ونتواصل معك بالخطوة التالية المناسبة.", field_name:"الاسم الكامل", field_email:"البريد الإلكتروني", field_country:"الدولة والمدينة", field_role:"دورك المهني", role_choose:"اختاري", role_artist:"فنانة حواجب", role_creator:"صانعة محتوى", role_trainer:"مدرّبة / متحدثة", role_school:"أكاديمية", role_beginner:"مبتدئة", field_profile:"رابط Instagram أو ملف الأعمال", form_consent:"بتقديم الطلب، توافقين على أن تراجع BrowXenna ملفك المهني وتتواصل معك بشأن BrowXenna Pro.", form_button:"إرسال الطلب", success_title:"تم استلام الطلب", success_text:"هذا نموذج أولي. في النسخة الفعلية، سيراجع فريق BrowXenna الملف ويرد عبر البريد الإلكتروني.", footer_note:"نموذج إعلاني مستقل · يرتبط الطلب ببرنامج BrowXenna Pro الرسمي"
+      }
+    };
+
+    const languageSelect = document.getElementById("language");
+    const titleByLanguage = {
+      en: "BrowXenna Pro · Professional community",
+      ru: "BrowXenna Pro · Профессиональное сообщество",
+      es: "BrowXenna Pro · Comunidad profesional",
+      fr: "BrowXenna Pro · Communauté professionnelle",
+      ar: "BrowXenna Pro · المجتمع المهني"
+    };
+
+    function setLanguage(code) {
+      const dictionary = translations[code] || translations.en;
+      document.documentElement.lang = code;
+      document.documentElement.dir = code === "ar" ? "rtl" : "ltr";
+      document.title = titleByLanguage[code] || titleByLanguage.en;
+      document.querySelectorAll("[data-t]").forEach((node) => {
+        const key = node.dataset.t;
+        if (dictionary[key]) node.textContent = dictionary[key];
+      });
+      languageSelect.value = code;
+      localStorage.setItem("bx-pro-language", code);
+    }
+
+    const savedLanguage = localStorage.getItem("bx-pro-language");
+    const browserLanguage = navigator.language.slice(0, 2);
+    const initialLanguage = savedLanguage || (translations[browserLanguage] ? browserLanguage : "en");
+    setLanguage(initialLanguage);
+    languageSelect.addEventListener("change", (event) => setLanguage(event.target.value));
+
+    document.getElementById("applicationForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      event.currentTarget.style.display = "none";
+      document.getElementById("formSuccess").classList.add("active");
+    });
+  </script>
+</body>
+</html>
